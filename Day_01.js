@@ -1,13 +1,16 @@
 const student = {
-  name: "Aman",
+  name: "Test-name",
   age: 20,
-  rollNo: "23CS101",
+  rollNo: "0187CS111111",
   course: "Computer Science"
 };
 
+function printStudentDetails(student){
+    console.log("Student details");
+    for(const [key,value] of Object.entries(student)){
+        console.log(`${key.charAt(0).toUpperCase() + key.slice(1)} : ${value}`);
+    }
 
-console.log("Student Details:");
-console.log("Name:", student.name);
-console.log("Age:", student.age);
-console.log("Roll No:", student.rollNo);
-console.log("Course:", student.course);
+}
+
+printStudentDetails(student);
