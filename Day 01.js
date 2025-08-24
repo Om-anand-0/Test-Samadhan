@@ -6,11 +6,9 @@ const student = {
 };
 
 function printStudentDetails(student){
-    console.log("Student details");
+    console.log("Student details:");
     for(const [key,value] of Object.entries(student)){
         console.log(`${key.charAt(0).toUpperCase() + key.slice(1)} : ${value}`);
     }
-
 }
-
 printStudentDetails(student);
