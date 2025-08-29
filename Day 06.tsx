@@ -31,5 +31,5 @@ const ProfileCard: FC<ProfileCardProps> = ({ name, role, image, bio }) => {
     </div>
   );
 };
-
+ 
 export default ProfileCard;
