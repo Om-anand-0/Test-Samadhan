@@ -1,17 +1,26 @@
 import ProfileCard from "./components/ProfileCard";
+import Counter from "./components/Counter";
+import LiveText from "./components/LiveText";
+
 
 function App() {
   
 
   return (
     <>
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6  ">
       <ProfileCard
-        name="Om Anand"
-        role="Full Time Procastinator"
+        name="Code N Pray"
+        role="Hackathon Hackers"
         image="https://i.pravatar.cc/150?img=6"
-        bio="Passionate about Monster Ultra and Money."
+        bio="Team consits Ajay, Arsh, Om."
       />
+      {/* <Counter/>
+      <LiveText/> */}
+    </div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+      <Counter/>
+      <LiveText/>
     </div>
     </>
   )
