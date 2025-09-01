@@ -5,9 +5,9 @@ const port = 3000;
 
 // Dummy student data
 const students = [
-  { id: 1, name: "Rahul", age: 20 },
-  { id: 2, name: "Priya", age: 21 },
-  { id: 3, name: "Amit", age: 22 },
+  { id: 1, name: "Alice", age: 20, course: "CSE" },
+  { id: 2, name: "Bob", age: 21, course: "ECE" },
+  { id: 3, name: "Charlie", age: 22, course: "ME" }
 ];
 
 // Default route
