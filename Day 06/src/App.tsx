@@ -3,7 +3,28 @@ import Counter from "./components/Counter";
 import LiveText from "./components/LiveText";
 import TodoList from "./components/TodoList";
 import StudentDirectory from "./components/StudentDirectory";
+import ProductCard from "./components/ProductCard";
 
+const products = [
+  {
+    name: "iPhone 16 Pro Max",
+    price: 133900,
+    description: "Latest iPhone with A16 Bionic chip, 256 GB Storage",
+    imageUrl: "/iphone_16pm.jpg"
+  },
+  {
+    name: "MacBook Air",
+    price: 115990,
+    description: "Lightweight laptop with M4 chip, 16 GB Ram & 512 GB Storage",
+    imageUrl: "/macbook_air.jpg"
+  },
+  {
+    name: "AirPods Pro",
+    price: 22990,
+    description: "Apple AirPods Pro (2nd Generation) with MagSafe Case (USB‑C) ​​​​​​​(White)",
+    imageUrl: "/airpods_pro.jpg"
+  }
+]
 
 function App() {
   
@@ -14,7 +35,7 @@ function App() {
       <ProfileCard
         name="Code N Pray"
         role="Hackathon Hackers"
-        image="https://i.pravatar.cc/150?img=6"
+        image="/codenpray.png"
         bio="Team consits Ajay, Arsh, Om."
       />
       {/* <Counter/>
@@ -30,6 +51,16 @@ function App() {
      <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <StudentDirectory />
     </div>
+
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-10">
+      <h1 className="text-3xl font-bold mb-6">Product List</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {products.map((p, i) => (
+          <ProductCard key={i} {...p} />
+        ))}
+      </div>
+    </div>
+
     </>
   )
 }
