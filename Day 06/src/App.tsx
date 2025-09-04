@@ -4,6 +4,7 @@ import LiveText from "./components/LiveText";
 import TodoList from "./components/TodoList";
 import StudentDirectory from "./components/StudentDirectory";
 import ProductCard from "./components/ProductCard";
+import TodoApp from "./components/TodoApp";
 
 const products = [
   {
@@ -61,6 +62,9 @@ function App() {
       </div>
     </div>
 
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <TodoApp />
+    </div>
     </>
   )
 }
