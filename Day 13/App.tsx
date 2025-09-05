@@ -1,11 +1,5 @@
-import ProfileCard from "./components/ProfileCard";
-import Counter from "./components/Counter";
-import LiveText from "./components/LiveText";
-import TodoList from "./components/TodoList";
-import StudentDirectory from "./components/StudentDirectory";
-import ProductCard from "./components/ProductCard";
-import TodoApp from "./components/TodoApp";
-import NotesApp from "./components/NotesApp";
+
+import NotesApp from "./NotesApp";
 
 const products = [
   {

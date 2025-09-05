@@ -4,3 +4,4 @@ auto_push.bat
 node_modules
 package-lock.json
 push_log.txt
+.env
