@@ -6,6 +6,7 @@ import StudentDirectory from "./components/StudentDirectory";
 import ProductCard from "./components/ProductCard";
 import TodoApp from "./components/TodoApp";
 import NotesApp from "./components/NotesApp";
+// import Robot from "./components/Robot";
 
 const products = [
   {
@@ -70,6 +71,10 @@ function App() {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <NotesApp />
     </div>
+
+    {/* <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <Robot />
+    </div> */}
     </>
   )
 }
