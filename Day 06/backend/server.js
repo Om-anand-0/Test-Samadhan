@@ -4,9 +4,11 @@ const cors = require("cors");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const User = require("./models/User");
+const authRoutes = require("./routes/auth");
 
 const app = express();
 
+app.use("/api/auth", authRoutes);
 app.use(cors());
 app.use(express.json());
 

@@ -36,23 +36,23 @@ export default function LoginForm({ onLogin }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col space-y-3">
-      <h2 className="text-xl font-bold">Login</h2>
+      <h2 className="text-xl font-bold text-center font-mono">Login</h2>
       {error && <p className="text-red-500">{error}</p>}
       <input
         type="text"
         placeholder="Username"
-        className="border rounded p-2"
+        className="border rounded p-2 text-center font-mono"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
         type="password"
         placeholder="Password"
-        className="border rounded p-2"
+        className="border rounded p-2 text-center font-mono"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+      <button type="submit" className="bg-blue-600 text-white p-2 rounded font-mono">
         Login
       </button>
     </form>

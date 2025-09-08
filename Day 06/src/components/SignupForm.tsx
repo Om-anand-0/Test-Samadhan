@@ -38,7 +38,7 @@ export default function SignupForm({ onSignup }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col space-y-3">
-      <h2 className="text-xl font-bold">Sign Up</h2>
+      <h2 className="text-xl font-bold font-mono">Sign Up</h2>
       {error && <p className="text-red-500">{error}</p>}
       {success && <p className="text-green-500">{success}</p>}
       <input
@@ -55,7 +55,7 @@ export default function SignupForm({ onSignup }: Props) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit" className="bg-green-500 text-white p-2 rounded">
+      <button type="submit" className="bg-green-500 text-white p-2 rounded font-mono">
         Sign Up
       </button>
     </form>
