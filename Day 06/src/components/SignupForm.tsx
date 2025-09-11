@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../services/firebase";
 
 type Props = {
   onSignup: () => void;
 };
 
 export default function SignupForm({ onSignup }: Props) {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -16,23 +18,11 @@ export default function SignupForm({ onSignup }: Props) {
     setSuccess("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.error || "Signup failed");
-        return;
-      }
-
+      await createUserWithEmailAndPassword(auth, email, password);
       setSuccess("Signup successful! You can login now.");
       onSignup();
-    } catch (err) {
-      setError("Something went wrong");
+    } catch (err: any) {
+      setError(err.message);
     }
   };
 
@@ -42,11 +32,11 @@ export default function SignupForm({ onSignup }: Props) {
       {error && <p className="text-red-500">{error}</p>}
       {success && <p className="text-green-500">{success}</p>}
       <input
-        type="text"
-        placeholder="Username"
+        type="email"
+        placeholder="Email"
         className="border rounded p-2"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"

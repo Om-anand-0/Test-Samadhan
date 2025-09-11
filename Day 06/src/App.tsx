@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useAuth } from "./hooks/useAuth";
+import { signOut } from "firebase/auth";
+import { auth } from "./services/firebase";
 
 import ProfileCard from "./components/ProfileCard";
 import Counter from "./components/Counter";
@@ -12,31 +15,16 @@ import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 
 const products = [
-  {
-    name: "iPhone 16 Pro Max",
-    price: 133900,
-    description: "Latest iPhone with A16 Bionic chip, 256 GB Storage",
-    imageUrl: "/iphone_16pm.jpg"
-  },
-  {
-    name: "MacBook Air",
-    price: 115990,
-    description: "Lightweight laptop with M4 chip, 16 GB Ram & 512 GB Storage",
-    imageUrl: "/macbook_air.jpg"
-  },
-  {
-    name: "AirPods Pro",
-    price: 22990,
-    description: "Apple AirPods Pro (2nd Generation) with MagSafe Case (USB-C) ​​​​​​​(White)",
-    imageUrl: "/airpods_pro.jpg"
-  }
-]
+  { name: "iPhone 16 Pro Max", price: 133900, description: "Latest iPhone with A16 Bionic chip, 256 GB Storage", imageUrl: "/iphone_16pm.jpg" },
+  { name: "MacBook Air", price: 115990, description: "Lightweight laptop with M4 chip, 16 GB Ram & 512 GB Storage", imageUrl: "/macbook_air.jpg" },
+  { name: "AirPods Pro", price: 22990, description: "Apple AirPods Pro (2nd Generation) with MagSafe Case (USB-C)", imageUrl: "/airpods_pro.jpg" }
+];
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user } = useAuth();
   const [showSignup, setShowSignup] = useState(false);
 
-  if (!isLoggedIn) {
+  if (!user) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="bg-white p-6 rounded-xl shadow-md w-96">
@@ -45,36 +33,33 @@ function App() {
               <SignupForm onSignup={() => setShowSignup(false)} />
               <p className="text-sm mt-3 text-gray-600">
                 Already have an account?{" "}
-                <button
-                  onClick={() => setShowSignup(false)}
-                  className="text-blue-500"
-                >
-                  Login
-                </button>
+                <button onClick={() => setShowSignup(false)} className="text-blue-500">Login</button>
               </p>
             </>
           ) : (
             <>
-              <LoginForm onLogin={() => setIsLoggedIn(true)} />
+              <LoginForm onLogin={() => {}} />
               <p className="text-sm mt-3 text-gray-600">
                 Don’t have an account?{" "}
-                <button
-                  onClick={() => setShowSignup(true)}
-                  className="text-blue-500"
-                >
-                  Sign Up
-                </button>
+                <button onClick={() => setShowSignup(true)} className="text-blue-500">Sign Up</button>
               </p>
             </>
           )}
         </div>
       </div>
-    )
+    );
   }
 
   // ✅ Main app after login
   return (
     <>
+      <button
+        onClick={() => signOut(auth)}
+        className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded"
+      >
+        Logout
+      </button>
+
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
         <ProfileCard
           name="Code N Pray"
@@ -114,8 +99,7 @@ function App() {
         <NotesApp />
       </div>
     </>
-  )
+  );
 }
 
 export default App;
-  

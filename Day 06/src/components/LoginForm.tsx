@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../services/firebase";
 
 type Props = {
   onLogin: () => void;
 };
 
 export default function LoginForm({ onLogin }: Props) {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -14,23 +16,10 @@ export default function LoginForm({ onLogin }: Props) {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.error || "Login failed");
-        return;
-      }
-
-      localStorage.setItem("token", data.token); // ✅ store JWT
+      await signInWithEmailAndPassword(auth, email, password);
       onLogin();
-    } catch (err) {
-      setError("Something went wrong");
+    } catch (err: any) {
+      setError(err.message);
     }
   };
 
@@ -39,11 +28,11 @@ export default function LoginForm({ onLogin }: Props) {
       <h2 className="text-xl font-bold text-center font-mono">Login</h2>
       {error && <p className="text-red-500">{error}</p>}
       <input
-        type="text"
-        placeholder="Username"
+        type="email"
+        placeholder="Email"
         className="border rounded p-2 text-center font-mono"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
