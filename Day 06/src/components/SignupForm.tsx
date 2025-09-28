@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../services/firebase";
 
 type Props = {
@@ -26,11 +26,28 @@ export default function SignupForm({ onSignup }: Props) {
     }
   };
 
+  const handleGoogleAuth = async () => {
+    setError("");
+    setSuccess("");
+    const provider = new GoogleAuthProvider();
+
+    try {
+      await signInWithPopup(auth, provider);
+      setSuccess("Google login/signup successful!");
+      onSignup();
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col space-y-3">
       <h2 className="text-xl font-bold font-mono">Sign Up</h2>
+
       {error && <p className="text-red-500">{error}</p>}
       {success && <p className="text-green-500">{success}</p>}
+
+      {/* Email/Password Signup */}
       <input
         type="email"
         placeholder="Email"
@@ -45,8 +62,27 @@ export default function SignupForm({ onSignup }: Props) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit" className="bg-green-500 text-white p-2 rounded font-mono">
-        Sign Up
+      <button
+        type="submit"
+        className="bg-green-500 text-white p-2 rounded font-mono"
+      >
+        Sign Up with Email
+      </button>
+
+      {/* Divider */}
+      <div className="flex items-center my-2">
+        <hr className="flex-grow border-gray-300" />
+        <span className="px-2 text-gray-500 text-sm">OR</span>
+        <hr className="flex-grow border-gray-300" />
+      </div>
+
+      {/* Google Auth (works as both login + signup) */}
+      <button
+        type="button"
+        onClick={handleGoogleAuth}
+        className="bg-red-500 text-white p-2 rounded font-mono"
+      >
+        Continue with Google
       </button>
     </form>
   );
